@@ -27,6 +27,9 @@ jobs:
   send-regulatory-email:
     # GitHub provides free Ubuntu Linux virtual machines for running jobs
     runs-on: ubuntu-latest
+    # Opt into Node.js 24 now — Node.js 20 actions are deprecated as of June 2026
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       # Step 1: Download this repository's code onto the virtual machine
