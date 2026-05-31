@@ -1,0 +1,4 @@
+# pytest is a tool for running automated tests locally.
+# It is NOT needed on GitHub Actions (the workflow runs the script directly).
+# Install with: python3 -m pip install -r requirements.txt
+pytest
