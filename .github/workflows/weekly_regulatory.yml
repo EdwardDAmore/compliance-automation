@@ -1,0 +1,78 @@
+# .github/workflows/weekly_regulatory.yml
+#
+# GitHub Actions workflow for Job 1: Weekly Regulatory Update
+#
+# This file tells GitHub WHEN to run the job and WHAT settings to use.
+# The actual email-sending logic lives in scripts/send_email.py.
+#
+# To trigger this manually (for testing):
+#   Go to GitHub repo → Actions tab → "Weekly Regulatory Update" → "Run workflow"
+
+name: Weekly Regulatory Update
+
+# WHEN to run this workflow
+on:
+  schedule:
+    # Cron format: minute  hour  day-of-month  month  day-of-week
+    #                 0      12       *            *        1
+    # Translation: At 12:00 UTC every Monday
+    # (~8am ET in summer/EDT, ~7am ET in winter/EST)
+    - cron: '0 12 * * 1'
+
+  # workflow_dispatch lets you trigger this manually from GitHub's website.
+  # This is essential for testing — you don't want to wait until Monday!
+  workflow_dispatch:
+
+jobs:
+  send-regulatory-email:
+    # GitHub provides free Ubuntu Linux virtual machines for running jobs
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Download this repository's code onto the virtual machine
+      # (The VM starts empty — it needs to fetch our script first)
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Python 3.12 on the virtual machine
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Step 3: Run the email script with all required configuration
+      - name: Send weekly regulatory update email
+        # env: sets environment variables that scripts/send_email.py will read.
+        # ${{ secrets.NAME }} pulls the value from GitHub's encrypted Secrets vault.
+        # The secrets must be set up in: GitHub repo → Settings → Secrets → Actions
+        env:
+          # Authentication secrets (stored in GitHub Secrets — never hardcoded)
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          CLAUDE_PROJECT_URL: ${{ secrets.REGULATORY_CLAUDE_URL }}
+
+          # Job-specific configuration (not secret — lives here in the YAML)
+          EMAIL_SUBJECT: "[COMPLIANCE] Weekly Regulatory Update — Ready to Run"
+          JOB_NAME: "Weekly Regulatory Update"
+          JOB_SCHEDULE_DESC: "Every Monday at ~8am ET"
+
+          # REPLACE THIS with your actual regulatory update prompt.
+          # The | symbol means "multi-line text follows, preserve line breaks."
+          PROMPT_TEXT: |
+            [PLACEHOLDER — Replace this entire block with your actual regulatory update prompt]
+
+            Example of what this might look like:
+            You are a compliance assistant for a FinCEN-registered fiat-backed stablecoin
+            issuer licensed as a money transmitter in 16+ states. Please review this week's
+            regulatory landscape and provide a structured summary covering:
+            1. New FinCEN guidance or advisories published this week
+            2. State money transmitter license updates across our 16+ states
+            3. OFAC/SDN list updates and sanctions developments
+            4. Upcoming compliance deadlines in the next 30 days
+            5. Relevant enforcement actions in the crypto/stablecoin space
+
+            [End placeholder — delete everything above and paste your real prompt here]
+
+        # Run the shared email script
+        run: python scripts/send_email.py

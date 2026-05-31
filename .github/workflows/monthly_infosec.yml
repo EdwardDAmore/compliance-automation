@@ -1,0 +1,71 @@
+# .github/workflows/monthly_infosec.yml
+#
+# GitHub Actions workflow for Job 2: Monthly InfoSec Newsletter
+#
+# Runs on the 27th of every month — chosen as a fixed approximation of
+# "3 days before end of month" (cron cannot express variable month lengths).
+#
+# To trigger this manually (for testing):
+#   Go to GitHub repo → Actions tab → "Monthly InfoSec Newsletter" → "Run workflow"
+
+name: Monthly InfoSec Newsletter
+
+# WHEN to run this workflow
+on:
+  schedule:
+    # Cron format: minute  hour  day-of-month  month  day-of-week
+    #                 0      12       27          *        *
+    # Translation: At 12:00 UTC on the 27th of every month
+    # (~8am ET in summer/EDT, ~7am ET in winter/EST)
+    - cron: '0 12 27 * *'
+
+  # workflow_dispatch lets you trigger this manually from GitHub's website for testing
+  workflow_dispatch:
+
+jobs:
+  send-infosec-email:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Download this repository's code onto the virtual machine
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # Install Python 3.12 on the virtual machine
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # Run the email script with InfoSec-specific configuration
+      - name: Send monthly InfoSec newsletter email
+        env:
+          # Authentication secrets (stored in GitHub Secrets — never hardcoded)
+          GMAIL_SENDER: ${{ secrets.GMAIL_SENDER }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          RECIPIENT_EMAIL: ${{ secrets.RECIPIENT_EMAIL }}
+          CLAUDE_PROJECT_URL: ${{ secrets.INFOSEC_CLAUDE_URL }}
+
+          # Job-specific configuration (not secret — lives here in the YAML)
+          EMAIL_SUBJECT: "[COMPLIANCE] Monthly InfoSec Newsletter — Ready to Run"
+          JOB_NAME: "Monthly InfoSec Newsletter"
+          JOB_SCHEDULE_DESC: "27th of every month at ~8am ET"
+
+          # REPLACE THIS with your actual InfoSec newsletter prompt.
+          PROMPT_TEXT: |
+            [PLACEHOLDER — Replace this entire block with your actual InfoSec newsletter prompt]
+
+            Example of what this might look like:
+            You are an information security advisor for a FinCEN-registered fiat-backed
+            stablecoin issuer. Please compile this month's InfoSec newsletter covering:
+            1. Major data breaches or security incidents in the financial/crypto sector
+            2. New vulnerabilities relevant to our technology stack
+            3. Updates to security frameworks (NIST, ISO 27001, SOC 2, etc.)
+            4. Recommended security patches or actions we should prioritize
+            5. Emerging threats targeting money service businesses or crypto companies
+
+            Format this as a brief newsletter I can share with the team.
+
+            [End placeholder — delete everything above and paste your real prompt here]
+
+        run: python scripts/send_email.py
