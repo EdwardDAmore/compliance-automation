@@ -57,19 +57,74 @@ jobs:
 
           # REPLACE THIS with your actual InfoSec newsletter prompt.
           PROMPT_TEXT: |
-            [PLACEHOLDER — Replace this entire block with your actual InfoSec newsletter prompt]
+            MONTHLY INFOSEC AWARENESS NEWSLETTER GENERATION PROMPT
 
-            Example of what this might look like:
-            You are an information security advisor for a FinCEN-registered fiat-backed
-            stablecoin issuer. Please compile this month's InfoSec newsletter covering:
-            1. Major data breaches or security incidents in the financial/crypto sector
-            2. New vulnerabilities relevant to our technology stack
-            3. Updates to security frameworks (NIST, ISO 27001, SOC 2, etc.)
-            4. Recommended security patches or actions we should prioritize
-            5. Emerging threats targeting money service businesses or crypto companies
+            1. CONTEXT & COMMUNICATION FRAMEWORK
+            - Expert(s) conducting the task: Chief Information Security Officer (CISO), Security Awareness Program Manager, Financial Services Security Architect, Stablecoin Compliance Specialist, and Technical Communications Specialist
+            - Organization Type: U.S. fiat-backed stablecoin issuer operating within the digital asset and financial services sector
+            - Audience: All employees, including engineering, product, operations, finance, compliance, legal, customer support, and executive leadership
+            - Objective: Create a concise, engaging monthly InfoSec awareness email that reinforces secure behaviors, protects customer assets and sensitive financial data, and supports regulatory and compliance obligations.
+            - Monthly Topic: [INSERT MONTHLY INFOSEC TOPIC]
+            - Organizational Context: [OPTIONAL COMPANY-SPECIFIC CONTEXT, RECENT INCIDENTS, NEW TOOLS, AUDIT FINDINGS, POLICY CHANGES, REGULATORY DEVELOPMENTS, OR THREAT INTELLIGENCE]
+            - Desired Outcome: Increase employee awareness, encourage immediate action, strengthen security culture, and reduce operational and cyber risk.
 
-            Format this as a brief newsletter I can share with the team.
+            2. CORE COMMUNICATION OBJECTIVE
+            - Primary Topic Question: What are the most important security practices employees should follow regarding [INSERT MONTHLY INFOSEC TOPIC]?
+            - Key Employee Takeaway: Employees should understand the risk, recognize common warning signs, and adopt specific security behaviors.
+            - Common Misconceptions to Address: Include 1-2 myths or misunderstandings related to the topic.
 
-            [End placeholder — delete everything above and paste your real prompt here]
+            3. CONTENT PARAMETERS
+            - Topic Focus: [PHISHING, PASSWORDS, MFA, SOCIAL ENGINEERING, EXECUTIVE IMPERSONATION, BUSINESS EMAIL COMPROMISE, CRYPTO/WALLET SECURITY, PRIVILEGED ACCESS, CLOUD SECURITY, DATA CLASSIFICATION, AI SECURITY, REMOTE WORK, MOBILE SECURITY, VENDOR SECURITY, INCIDENT REPORTING, ETC.]
+            - Industry Relevance Requirement: Explain why the topic is particularly important for a U.S. fiat-backed stablecoin issuer handling customer data, financial operations, regulated activities, and critical infrastructure.
+            - Actionability Requirement: Every recommendation must be practical and immediately actionable.
+            - Technical Level: Beginner-friendly with minimal jargon.
+            - Reading Time: 2-3 minutes maximum.
+            - Compliance Awareness: Where relevant, reinforce responsibilities related to financial services security, customer data protection, fraud prevention, operational resilience, and regulatory expectations.
+
+            4. EMAIL OUTPUT SPECIFICATIONS
+            - Format: Short email newsletter
+            - Length: 250-400 words
+            - Tone: Professional, Friendly, Positive, Action-oriented, Non-alarmist
+
+            Required Sections:
+            - Subject Line
+            - Opening Paragraph (brief explanation of the topic and why it matters)
+            - "Why This Matters at [COMPANY NAME]" section
+            - "What You Need to Know" section
+            - 3-5 Security Best Practices (bullet points)
+            - Common Warning Signs or Red Flags (2-4 bullets)
+            - Quick Action Checklist (3-5 items employees can complete immediately)
+            - Security Tip of the Month (one memorable takeaway)
+            - Closing Call-to-Action
+
+            5. INDUSTRY-SPECIFIC SECURITY REQUIREMENTS
+            - When applicable, connect the topic to:
+              - Protection of customer assets and reserves
+              - Financial fraud prevention
+              - Executive impersonation risks
+              - Vendor and third-party risk
+              - Protection of privileged accounts
+              - Secure handling of sensitive financial and operational information
+              - Secure use of AI tools and productivity platforms
+              - Incident reporting and escalation
+              - Regulatory and compliance obligations
+            - Avoid discussing confidential internal controls, architectures, or security procedures.
+            - Reinforce the importance of reporting suspicious activity immediately.
+
+            6. QUALITY REQUIREMENTS
+            - Use current security best practices from reputable sources such as NIST, CISA, OWASP, CIS Controls, Microsoft, Google, FS-ISAC, and major cybersecurity organizations.
+            - Avoid fear-based messaging.
+            - Avoid excessive technical detail.
+            - Focus on practical employee behavior changes.
+            - Include examples relevant to modern financial technology companies, cloud platforms, collaboration tools, digital asset operations, AI tools, and remote work environments.
+
+            7. ENGAGEMENT REQUIREMENTS
+            - Include one short real-world scenario illustrating the risk.
+            - Include one question employees should ask themselves when encountering a potential security threat.
+            - Use concise bullets and short paragraphs for readability.
+            - Include one positive reinforcement statement that highlights how employee actions contribute to protecting customers and the company's reputation.
+
+            8. OUTPUT INSTRUCTIONS
+            Generate the final newsletter as a polished email ready to send to all employees. Ensure recommendations are specific, actionable, and aligned with current cybersecurity and financial services best practices. Highlight the single most important action employees should take this month regarding the selected topic. Keep the message concise, practical, and relevant to a U.S. fiat-backed stablecoin issuer.
 
         run: python scripts/send_email.py
