@@ -2,6 +2,8 @@
 
 > Automated compliance workflow reminders for a FinCEN-registered stablecoin issuer — built with GitHub Actions and Python.
 
+**Status: Live and running.** Two scheduled jobs are actively delivering compliance workflow prompts to my inbox every week and every month.
+
 A scheduled automation system that delivers compliance workflow prompts directly to my inbox on a recurring schedule, so running weekly regulatory reviews and monthly InfoSec audits is reduced to a single click.
 
 ---
@@ -115,6 +117,17 @@ python3 -m pip install -r requirements.txt
 # Run the tests
 python3 -m pytest tests/ -v
 ```
+
+---
+
+## Status
+
+| Job | Status | Last Verified |
+|---|---|---|
+| Weekly Regulatory Update | ✅ Live | May 2026 |
+| Monthly InfoSec Newsletter | ✅ Live | May 2026 |
+
+Both jobs have been manually tested end-to-end and confirmed delivering emails with real compliance prompts and Claude Project links.
 
 ---
 
