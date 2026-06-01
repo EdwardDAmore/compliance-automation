@@ -61,8 +61,6 @@ jobs:
           JOB_NAME: "Weekly Regulatory Update"
           JOB_SCHEDULE_DESC: "Every Monday at ~8am ET"
 
-          # REPLACE THIS with your actual regulatory update prompt.
-          # The | symbol means "multi-line text follows, preserve line breaks."
           PROMPT_TEXT: |
             LEGAL & REGULATORY RESEARCH REQUEST: WEEKLY STABLECOIN REGULATORY INTELLIGENCE BRIEF
 

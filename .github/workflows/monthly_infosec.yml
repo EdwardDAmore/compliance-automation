@@ -55,7 +55,6 @@ jobs:
           JOB_NAME: "Monthly InfoSec Newsletter"
           JOB_SCHEDULE_DESC: "27th of every month at ~8am ET"
 
-          # REPLACE THIS with your actual InfoSec newsletter prompt.
           PROMPT_TEXT: |
             MONTHLY INFOSEC AWARENESS NEWSLETTER GENERATION PROMPT
 
