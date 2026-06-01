@@ -64,19 +64,157 @@ jobs:
           # REPLACE THIS with your actual regulatory update prompt.
           # The | symbol means "multi-line text follows, preserve line breaks."
           PROMPT_TEXT: |
-            [PLACEHOLDER — Replace this entire block with your actual regulatory update prompt]
+            LEGAL & REGULATORY RESEARCH REQUEST: WEEKLY STABLECOIN REGULATORY INTELLIGENCE BRIEF
 
-            Example of what this might look like:
-            You are a compliance assistant for a FinCEN-registered fiat-backed stablecoin
-            issuer licensed as a money transmitter in 16+ states. Please review this week's
-            regulatory landscape and provide a structured summary covering:
-            1. New FinCEN guidance or advisories published this week
-            2. State money transmitter license updates across our 16+ states
-            3. OFAC/SDN list updates and sanctions developments
-            4. Upcoming compliance deadlines in the next 30 days
-            5. Relevant enforcement actions in the crypto/stablecoin space
+            1. LEGAL CONTEXT & FRAMEWORK
+            - Expert(s) Conducting the Research: Former FinCEN policy official, former state money transmission regulator, payments regulatory attorney, bank regulatory counsel (OCC/Federal Reserve/FDIC), OFAC sanctions specialist, and fintech compliance executive with stablecoin and payments expertise.
+            - Legal Domain: U.S. financial services regulation, stablecoin regulation, money transmission law, BSA/AML compliance, sanctions compliance, banking regulation, payments regulation, digital asset regulation.
+            - Research Objective: Identify and assess newly published regulatory developments and enforcement actions that could materially affect the operations, compliance obligations, licensing requirements, risk profile, or strategic planning of a FinCEN-registered fiat-backed stablecoin issuer licensed as a money transmitter in 16+ U.S. states.
+            - Jurisdictional Scope: United States federal and state regulatory authorities.
+            - Organization Profile: FinCEN-registered fiat-backed stablecoin issuer operating under multiple state money transmitter licenses.
+            - Potential Impact Focus: Compliance obligations, examination expectations, licensing requirements, reserve management, AML/KYC obligations, sanctions compliance, consumer protection requirements, prudential expectations, reporting obligations, supervisory scrutiny, and enforcement risk.
+            2. CORE RESEARCH QUESTION
+            - Primary Legal Question: What regulatory, supervisory, enforcement, or policy developments published within the last 7 calendar days could materially impact the operations of a U.S.-licensed fiat-backed stablecoin issuer and multi-state money transmitter?
+            - Working Hypothesis: Recent developments may signal evolving regulatory expectations for stablecoin issuers, money transmitters, AML programs, sanctions compliance, reserve management, consumer protection, or licensing requirements.
+            - Alternative Interpretations: Distinguish between legally binding requirements, proposed requirements, supervisory signals, policy statements, and nonbinding commentary.
+            3. METHODOLOGICAL PARAMETERS
+            - Research Design: Regulatory monitoring, legal analysis, enforcement review, and compliance impact assessment.
+            - Temporal Scope: Only publications, announcements, guidance, speeches, enforcement actions, rulemakings, examination manuals, advisories, consent orders, settlements, policy statements, and supervisory communications issued within the previous 7 calendar days.
+            - Required Sources:
+              - FinCEN
+              - OCC
+              - FDIC
+              - Federal Reserve
+              - OFAC
+              - Conference of State Bank Supervisors (CSBS)
+              - State banking departments
+              - State financial services regulators
+              - State money transmitter licensing authorities
+              - FATF
+            - Include:
+              - Final rules
+              - Proposed rules
+              - Requests for comment
+              - Interpretive guidance
+              - Regulatory advisories
+              - Supervisory letters
+              - Policy statements
+              - Speeches or testimony indicating likely policy direction
+              - Examination and compliance guidance
+              - Consent orders
+              - Settlements
+              - Civil money penalties
+              - Enforcement actions
+              - Risk jurisdictional updates
+            - Exclude:
+              - General cryptocurrency market news
+              - Industry commentary lacking regulatory significance
+              - Opinion articles
+              - Duplicate announcements
 
-            [End placeholder — delete everything above and paste your real prompt here]
+            4. REPORT OUTPUT SPECIFICATIONS
+            - Report Structure: Executive regulatory briefing.
+            - Analytical Depth: Level 2 (Executive legal and compliance memorandum).
+            - Target Audience: Chief Compliance Officer, General Counsel, Chief Risk Officer, CEO, Board Risk Committee.
+
+            Required Output Format:
+
+            URGENCY RATING
+            - One sentence at the top:
+              - Critical
+              - High
+              - Moderate
+              - Low
+            - Explain in one sentence why.
+
+            EXECUTIVE SUMMARY
+            - 3–7 bullet summary of the week's most important developments.
+
+            KEY FINDINGS
+
+            For each item provide:
+
+            1. Headline
+            2. Regulator
+            3. Publication Date
+            4. Category:
+              - Final Rule
+              - Proposed Rule
+              - Guidance
+              - Enforcement Action
+              - Supervisory Communication
+              - Policy Statement
+              - Other
+            5. Plain-English Summary (maximum 150 words)
+            6. Why It Matters to a Stablecoin Issuer
+            7. Operational Impact Assessment:
+              - High
+              - Medium
+              - Low
+            8. Effective Date or Comment Deadline (if applicable)
+            9. Source Link
+
+            ENFORCEMENT WATCH
+            - Separate section summarizing enforcement actions involving:
+              - Stablecoin issuers
+              - Money transmitters
+              - Payments companies
+              - Digital asset firms
+              - AML failures
+              - Sanctions violations
+              - Licensing violations
+              - Consumer protection violations
+            - For each action include:
+              - Alleged misconduct
+              - Penalties imposed
+              - Compliance lessons
+              - Relevance to stablecoin operations
+
+            ACTIONS TO CONSIDER
+            - Provide a prioritized list:
+              - Immediate (0–30 days)
+              - Near-Term (30–90 days)
+              - Strategic Monitoring
+            - Focus only on practical actions justified by the reported developments.
+
+            5. EVIDENCE HIERARCHY & SOURCE QUALITY
+            - Tier 1 Sources:
+              - Official regulator publications
+              - Statutes
+              - Regulations
+              - Enforcement orders
+              - Agency guidance
+              - Official speeches and testimony
+            - Tier 2 Sources:
+              - CSBS materials
+              - State regulator publications
+            - Tier 3 Sources:
+              - Major legal alerts only when used to explain primary sources
+            - Every finding must be traceable to an original regulator source.
+
+            6. QUALITY ASSURANCE
+            - Clearly distinguish:
+              - Binding legal requirements
+              - Proposed requirements
+              - Supervisory expectations
+              - Informal policy signals
+            - Identify uncertainty where applicable.
+            - Highlight developments likely to affect:
+              - AML/BSA programs
+              - OFAC compliance
+              - Licensing
+              - Stablecoin reserves
+              - Consumer disclosures
+              - Custody arrangements
+              - Bank partnerships
+              - Examination readiness
+              - Reporting obligations
+
+            7. VALIDATION PROTOCOL
+            - Flag developments that may require legal review.
+            - Flag developments that may require board-level awareness.
+            - Highlight any emerging regulatory trends observed across multiple agencies.
+            - Conclude with a "What Changed This Week vs. Last Week" section summarizing any notable shift in regulatory posture.
 
         # Run the shared email script
         run: python scripts/send_email.py

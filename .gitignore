@@ -1,3 +1,8 @@
+# Local test files — contain real credentials and prompts, never upload
+test_prompt.txt
+test_local.py
+test_local.sh
+
 # Local environment files — NEVER commit these (they contain real passwords)
 .env
 *.env
