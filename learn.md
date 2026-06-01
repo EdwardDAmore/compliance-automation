@@ -108,6 +108,20 @@ The `*` means "every value" for that field. So `* * * * 1` means "every minute o
 
 **sudo wasn't available interactively.** When trying to install system packages, sudo required an interactive terminal (a real password prompt), which wasn't available through the automated tool session. The lesson: always check what's installed before assuming standard tools are available.
 
+**GitHub tokens need the `workflow` scope.** When pushing `.github/workflows/` files to GitHub, a Personal Access Token needs both `repo` AND `workflow` scopes checked. A token with only `repo` scope will fail with the error "refusing to allow a Personal Access Token to create or update workflow files." When generating tokens for projects that include GitHub Actions, always check both boxes.
+
+**Git credential prompts don't work in non-interactive sessions.** When running git push through an automated tool session (like Claude Code), git can't show a password prompt. The solution is to embed the token directly in the remote URL: `https://USERNAME:TOKEN@github.com/REPO.git`. This stores the credentials in `.git/config` locally — safe because `.git/` is never uploaded to GitHub. Never paste your token into any tracked file.
+
+**"Re-run all jobs" is not the same as "Run workflow."** Inside a GitHub Actions run, "Re-run all jobs" replays that specific run using the same code from when it originally ran. It will always produce the same output — including old placeholder prompts. To test updated code, you must go back to the workflow list and click "Run workflow" to create a brand new run from the latest commit.
+
+**Old runs always show old content.** GitHub Actions logs are a historical record. If you updated a prompt and trigger a new test, make sure you're looking at the NEW run (at the top of the list), not an old one. Old runs are frozen snapshots and will always show whatever was in the workflow file at the time they ran.
+
+**Bash can't source .env files with special characters or multi-line values.** The `source .env` command in bash treats every line as a shell command. If your .env file contains a long prompt with parentheses, dashes, colons, or multiple lines, bash will try to execute them and produce confusing errors. The fix is to use Python to read the .env file instead — Python treats it as plain text and handles any content safely. Long prompts also belong in their own plain text file (like `test_prompt.txt`) rather than crammed into a .env variable.
+
+**A `.gitignore` pattern can be too broad.** The pattern `.env.*` (intended to block `.env.local`, `.env.production`, etc.) also accidentally matches `.env.example` — a file that's safe to commit because it contains no real values. The fix was to rename it to `env.example` (no leading dot). When writing gitignore patterns, test them carefully: `git check-ignore -v filename` will tell you which rule is blocking a file.
+
+**Saving a file is not the same as committing it.** When you edit a file in any editor and save it, git sees the change but does nothing with it. Git only tracks changes you explicitly stage (`git add`) and commit (`git commit`). The mental model: saving = telling your editor "keep this," staging = telling git "watch this," committing = telling git "record this permanently." All three steps are needed before pushing.
+
 ---
 
 ## Potential Pitfalls and How to Avoid Them
