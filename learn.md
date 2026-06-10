@@ -91,8 +91,8 @@ Cron has five fields, each separated by a space:
 │ │ │ ┌───────────── month (1–12)
 │ │ │ │ ┌───────────── day of week (0–7, where 0 and 7 both mean Sunday)
 │ │ │ │ │
-0 12 * * 1    → Every Monday at 12:00 UTC
-0 12 27 * *   → 27th of every month at 12:00 UTC
+0 7 * * 1    → Every Monday at 07:00 UTC (~3am ET)
+0 7 27 * *   → 27th of every month at 07:00 UTC (~3am ET)
 * * * * *     → Every minute (useful for testing, terrible for production)
 ```
 
@@ -128,7 +128,7 @@ The `*` means "every value" for that field. So `* * * * 1` means "every minute o
 
 **Gmail App Password gotcha:** Gmail requires you to enable "2-Step Verification" before you can create App Passwords. If the script fails to authenticate, check that 2FA is enabled on the bot Gmail account first.
 
-**GitHub Actions cron delay:** GitHub's free cron scheduler can run up to 15 minutes late when GitHub is busy. This is documented behavior. If the email arrives at 8:17am instead of 8:00am, that's normal — not a bug.
+**GitHub Actions cron delay:** GitHub's free cron scheduler can run significantly late when GitHub is busy — the official documentation says "up to 15 minutes," but in practice this project observed delays of 4–7 hours. This is because free-tier jobs sit in a shared queue behind paid customers, and during peak hours the backlog can be enormous. The fix was to schedule the cron for 3am ET (7:00 UTC) instead of 8am ET, so even with a several-hour delay, the email still lands in the inbox before the workday begins. The lesson: **if the delivery time matters, don't schedule for the exact time you need — schedule hours early and let the delays absorb into the buffer. Don't trust the documented maximum; test with your actual account tier.**
 
 **YAML indentation is not forgiving:** YAML uses indentation (spaces, not tabs) to define structure. If the YAML file has a tab character instead of spaces, or misaligned indentation, GitHub Actions will fail with a cryptic error. If a workflow fails immediately with a parse error, indentation is the first thing to check.
 

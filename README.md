@@ -43,8 +43,10 @@ Gmail SMTP → Eddie's inbox
 
 | Job | Schedule | Purpose |
 |---|---|---|
-| Weekly Regulatory Update | Every Monday at ~8am ET | Regulatory monitoring prompt + Claude link |
-| Monthly InfoSec Newsletter | 27th of every month at ~8am ET | InfoSec review prompt + Claude link |
+| Weekly Regulatory Update | Every Monday at ~3am ET | Regulatory monitoring prompt + Claude link |
+| Monthly InfoSec Newsletter | 27th of every month at ~3am ET | InfoSec review prompt + Claude link |
+
+Both jobs run at 3am ET (07:00 UTC) — scheduled early to give GitHub's queue time to process so emails land in the inbox before the workday starts.
 
 Both jobs use the same Python script (`scripts/send_email.py`) with different configuration passed via environment variables.
 
