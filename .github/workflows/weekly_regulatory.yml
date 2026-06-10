@@ -18,10 +18,11 @@ env:
 on:
   schedule:
     # Cron format: minute  hour  day-of-month  month  day-of-week
-    #                 0      12       *            *        1
-    # Translation: At 12:00 UTC every Monday
-    # (~8am ET in summer/EDT, ~7am ET in winter/EST)
-    - cron: '0 12 * * 1'
+    #                 0       7       *            *        1
+    # Translation: At 07:00 UTC every Monday
+    # (~3am ET in summer/EDT, ~2am ET in winter/EST)
+    # Scheduled early to allow for GitHub Actions queue delays before business hours
+    - cron: '0 7 * * 1'
 
   # workflow_dispatch lets you trigger this manually from GitHub's website.
   # This is essential for testing — you don't want to wait until Monday!
@@ -59,7 +60,7 @@ jobs:
           # Job-specific configuration (not secret — lives here in the YAML)
           EMAIL_SUBJECT: "[COMPLIANCE] Weekly Regulatory Update — Ready to Run"
           JOB_NAME: "Weekly Regulatory Update"
-          JOB_SCHEDULE_DESC: "Every Monday at ~8am ET"
+          JOB_SCHEDULE_DESC: "Every Monday at ~3am ET"
 
           PROMPT_TEXT: |
             LEGAL & REGULATORY RESEARCH REQUEST: WEEKLY STABLECOIN REGULATORY INTELLIGENCE BRIEF
